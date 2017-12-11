@@ -14,16 +14,27 @@ api = Api(app)
 class SystemToolTime(Resource):
     def get(self):
         ##url = "http://" + os.environ['APP'] + "-system-time:10002/time"
-        url = "http://" + os.environ['APP'] + "-system-time"
-        resp = requests.get(url)
+        #url = "http://" + os.environ['APP'] + "-system-time"
+        
+        url = os.environ['SYSTEM-TIME-TIME']
+        headers = {            
+            'API-KEY': os.environ['HEADER']
+            }
+        resp = requests.request("GET", url, headers=headers)
+        #resp = requests.get(url)
         return resp.json()
 
 
 class SystemToolUpTime(Resource):
     def get(self):
         ##url = "http://" + os.environ['APP'] + "-system-uptime:10004/uptime"
-        url = "http://" + os.environ['APP'] + "-system-uptime"
-        resp = requests.get(url)
+        #url = "http://" + os.environ['APP'] + "-system-uptime"
+        url = os.environ['SYSTEM-UPTIME-UPTIME']
+        headers = {            
+            'API-KEY': os.environ['HEADER']
+            }
+        resp = requests.request("GET", url, headers=headers)
+        #resp = requests.get(url)
         return resp.json()
 
 
