@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import requests
+import redis
 
 from flask import Flask, request
 from flask_restful import Resource, Api
@@ -16,9 +17,9 @@ class SystemToolTime(Resource):
         ##url = "http://" + os.environ['APP'] + "-system-time:10002/time"
         #url = "http://" + os.environ['APP'] + "-system-time"
         
-        url = os.environ['SYSTEM-TIME-TIME']
+        url = redis_db.get('SYSTEM-TIME-FQDN')
         headers = {            
-            'API-KEY': os.environ['HEADER']
+            'API-KEY': redis_db.get('SYSTEM-TIME-HEADER-API-KEY')
             }
         resp = requests.request("GET", url, headers=headers)
         #resp = requests.get(url)
@@ -29,9 +30,9 @@ class SystemToolUpTime(Resource):
     def get(self):
         ##url = "http://" + os.environ['APP'] + "-system-uptime:10004/uptime"
         #url = "http://" + os.environ['APP'] + "-system-uptime"
-        url = os.environ['SYSTEM-UPTIME-UPTIME']
+        url = redis_db.get('SYSTEM-UPTIME-FQDN')
         headers = {            
-            'API-KEY': os.environ['HEADER']
+            'API-KEY': redis_db.get('SYSTEM-UPTIME-HEADER-API-KEY')
             }
         resp = requests.request("GET", url, headers=headers)
         #resp = requests.get(url)
