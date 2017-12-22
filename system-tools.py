@@ -10,7 +10,7 @@ from flask_restful import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
-redis_db = redis.StrictRedis(host="24.24.24.134", port=6379)
+redis_db = redis.StrictRedis(host=str(os.environ['REDIS_SERVICE_HOST']), port=str(os.environ['REDIS_SERVICE_PORT']))
 
 class SystemToolTime(Resource):
     def get(self):
