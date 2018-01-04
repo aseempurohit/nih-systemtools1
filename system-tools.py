@@ -13,10 +13,7 @@ api = Api(app)
 redis_db = redis.StrictRedis(host=str(os.environ['REDIS_SERVICE_HOST']), port=str(os.environ['REDIS_SERVICE_PORT']))
 
 class SystemToolTime(Resource):
-    def get(self):
-        ##url = "http://" + os.environ['APP'] + "-system-time:10002/time"
-        #url = "http://" + os.environ['APP'] + "-system-time"
-        
+    def get(self):      
         ms_json = eval(redis_db.get('SYSTEM-TIME-1513'))
         url = str(ms_json["10002"])
         headers = {            
@@ -29,8 +26,6 @@ class SystemToolTime(Resource):
 
 class SystemToolUpTime(Resource):
     def get(self):
-        ##url = "http://" + os.environ['APP'] + "-system-uptime:10004/uptime"
-        #url = "http://" + os.environ['APP'] + "-system-uptime"
         ms_json = eval(redis_db.get('SYSTEM-UPTIME-1512'))
         url = str(ms_json["10004"])
         headers = {            
