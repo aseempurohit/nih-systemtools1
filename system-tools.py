@@ -14,7 +14,7 @@ redis_db = redis.StrictRedis(host=str(os.environ['REDIS_SERVICE_HOST']), port=st
 
 class SystemToolTime(Resource):
     def get(self):      
-        ms_json = eval(redis_db.get('SYSTEM-TIME-1513'))
+        ms_json = eval(redis_db.get('SYSTEM-TIME-10-1'))
         url = str(ms_json["10002"])
         headers = {            
             'API-KEY': redis_db.get('API-KEY')
@@ -26,7 +26,7 @@ class SystemToolTime(Resource):
 
 class SystemToolUpTime(Resource):
     def get(self):
-        ms_json = eval(redis_db.get('SYSTEM-UPTIME-1512'))
+        ms_json = eval(redis_db.get('SYSTEM-UPTIME-NIH1101'))
         url = str(ms_json["10004"])
         headers = {            
             'API-KEY': redis_db.get('API-KEY')
